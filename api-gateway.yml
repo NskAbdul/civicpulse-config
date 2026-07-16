@@ -1,0 +1,35 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: user-service
+              uri: lb://USER-SERVICE
+              predicates:
+                - Path=/api/users/**
+
+            - id: citizen-service
+              uri: lb://CITIZEN-SERVICE
+              predicates:
+                - Path=/api/citizens/**
+
+            - id: grievance-service
+              uri: lb://GRIEVANCE-SERVICE
+              predicates:
+                - Path=/api/grievances/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
