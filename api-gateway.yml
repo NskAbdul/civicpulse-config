@@ -41,6 +41,11 @@ spring:
               predicates:
                 - Path=/api/grievances/**
 
+            - id: admin-service
+              uri: lb://GRIEVANCE-SERVICE
+              predicates:
+                - Path=/api/admin/**
+
 eureka:
   client:
     service-url:
