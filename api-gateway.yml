@@ -46,6 +46,11 @@ spring:
               predicates:
                 - Path=/api/admin/**
 
+            - id: department-service
+              uri: lb://DEPARTMENT-SERVICE
+              predicates:
+                - Path=/api/departments/**,/api/officers/**
+
 eureka:
   client:
     service-url:
